@@ -1,0 +1,18 @@
+using System.Collections;
+using UnityEngine;
+
+namespace koncept.##APP##
+{
+    /// <summary>
+    /// A class that provides standard koncept Framework functionalities through inheritance.
+    /// </summary>
+    public class ##NAME## : Manager
+    {
+        public override IEnumerator Initialize()
+        {
+            // Run setup tasks here for this Manager when the koncept App starts up
+
+            return base.Initialize();
+        }
+    }
+}

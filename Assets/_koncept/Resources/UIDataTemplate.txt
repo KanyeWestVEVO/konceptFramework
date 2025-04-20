@@ -1,0 +1,12 @@
+using koncept.UIManagement;
+using UnityEngine;
+
+namespace koncept.##APP##
+{
+    [CreateAssetMenu(fileName = "New TemplateUIData", menuName = "koncept Framework/##APP##/##NAME##Data")]
+    public class ##NAME##Data : UIData
+    {
+        // Add your own properties and data to bind here!
+        public string exampleData = "This is an example string that can be passed into an instance of ##NAME## through its DataBind() method.";
+    }
+}

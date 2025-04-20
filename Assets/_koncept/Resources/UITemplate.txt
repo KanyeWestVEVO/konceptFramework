@@ -1,0 +1,73 @@
+using koncept.UIManagement;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace koncept.##APP##
+{
+    public class ##NAME## : UI
+    {
+        /*
+            Unsolicited Pro-Tip:
+            It is highly recommended to install the TextMeshPro package and use TMPro.TMP_Text instead of UnityEngine.UI.Text
+        */
+        [SerializeField] Text exampleLabel;
+
+        public override IEnumerator DataBind(UIData uiData = null)
+        {
+            ##NAME##Data data = uiData as ##NAME##Data;
+
+            Debug.Log("Data from the UIData package is now available to be applied to this UI.");
+
+            if (exampleLabel == null)
+                exampleLabel = GetComponentInChildren<Text>();
+
+            exampleLabel.text = data.exampleData;
+
+            yield break;
+        }
+
+        public override IEnumerator Show(UIData uiData = null)
+        {
+            if (uiData != null && uiData.DataBindOnShow)
+                yield return StartCoroutine(DataBind(uiData));
+
+            Debug.Log("Animate UI elements here, ex: Fade in panels and text.");
+
+            exampleLabel.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(1f);
+
+            exampleLabel.gameObject.SetActive(true);
+
+            yield break;
+        }
+
+        public override IEnumerator Hide()
+        {
+            Debug.Log("Animate UI elements here, ex: Fade out panels and text");
+
+            exampleLabel.text = "Imagine this UI fading out with a cool dismissal animation!";
+
+            yield return new WaitForSeconds(1f);
+
+            yield break;
+        }
+
+        public override void NavigateTo(UIData dataOfUIToNavigateTo)
+        {
+            Debug.Log("Behaviour that occurs pre-navigation goes here if applicable");
+
+            base.NavigateTo(dataOfUIToNavigateTo);
+
+            Debug.Log("Behaviour that occurs post-navigation goes here if applicable");
+        }
+
+        public override void Dismiss()
+        {
+            Debug.Log("Behaviour that occurs pre-dismissal of this UI goes here if applicable");
+
+            base.Dismiss();
+        }
+    }
+}
