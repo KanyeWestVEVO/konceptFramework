@@ -146,7 +146,7 @@ namespace koncept.Tools
             // Check which Managers are attached to this koncept Framework App
             if (app != null)
             {
-                attachedManagers = FindObjectsOfType<Manager>();
+                attachedManagers = FindObjectsByType<Manager>(FindObjectsSortMode.None);
                 app.SetManagers(attachedManagers);
 
                 UpdateAssociatedUIs(Application.dataPath + "/" + app.appName + "/Prefabs/UI/");
@@ -210,7 +210,7 @@ namespace koncept.Tools
             }
 
             // Check if koncept Framework exists in the currently opened scene
-            app = FindObjectOfType<koncept>();
+            app = FindFirstObjectByType<koncept>();
 
             if (app == null)
             {
@@ -838,7 +838,7 @@ namespace koncept.Tools
             codeGenPrefab.name = filterManagerName;
             codeGenPrefab.AddComponent(newManagerType);
 
-            GameObject singletonPrefab = FindObjectOfType<koncept>().gameObject;
+            GameObject singletonPrefab = FindFirstObjectByType<koncept>().gameObject;
             codeGenPrefab.transform.SetParent(singletonPrefab.transform);
             PrefabUtility.SaveAsPrefabAsset(singletonPrefab, "Assets/" + app.appName + "/Resources/_koncept-" + app.appName + ".prefab");
 
